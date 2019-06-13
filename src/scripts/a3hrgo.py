@@ -61,11 +61,11 @@ def main(hours):
     print(f'Setting exit time to {target_time}')
 
     now = datetime.now()
-    diff = (target_time - now).seconds
-    sleep_time = int(diff / 10)
+    sleep_time = int((target_time - now).seconds / 10)
     while now < target_time:
+        diff = (target_time - now).seconds
         print(f'{diff/60:05.1f}m away from marking exit - '
-              f'{now.hour:02}:{now.minute:02}:{now.second:02} / {target_time.hour:02}:{target_time.minute:02}:{target_time.second:02}')
+              f'{now.hour:02}:{now.minute:02}:{now.second:02}/{target_time.hour:02}:{target_time.minute:02}:{target_time.second:02}')
         time.sleep(sleep_time)
         now = datetime.now()
     else:
