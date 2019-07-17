@@ -68,6 +68,9 @@ def main(hours):
               f'{now.hour:02}:{now.minute:02}:{now.second:02}/{target_time.hour:02}:{target_time.minute:02}:{target_time.second:02}')
         time.sleep(sleep_time)
         now = datetime.now()
+        if diff <= 60 * 60:
+            sleep_time = int(diff / 2)
+            print(f'Setting sleep time to {sleep_time}')
     else:
         ext_time = login_and_mark_salida()
 
