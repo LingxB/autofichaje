@@ -57,7 +57,7 @@ def login_and_mark_salida(hold=False):
 def main(hours):
     print(f'----- Mark {hours} hours -----')
     ent_time = login_and_mark_entrada()
-    target_time = ent_time + timedelta(hours=hours, minutes=randint(1, 5), seconds=randint(0, 60))
+    target_time = ent_time + timedelta(hours=hours, minutes=randint(1, 5), seconds=randint(0, 60)) # + timedelta(hours=7)
     print(f'Setting exit time to {target_time}')
 
     now = datetime.now()
