@@ -1,6 +1,10 @@
 from selenium import webdriver
 from src.utils.file_utils import load_envar, get_envar
 from datetime import datetime
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
+import time
 
 
 class AutoFichaje(object):
@@ -25,8 +29,17 @@ class AutoFichaje(object):
         self.driver.find_element_by_xpath(""".//span[@class = "fa fa-clock-o iconoAyuda"]""").click()
         self.driver.find_element_by_id('btnGuardar').click()
 
-    def get_status(self):
-        self.driver.find_element_by_link_text("Mis Fichajes").click()
+    def get_status(self, timeout=10):
+
+        t = 0
+        while t < timeout:
+            try:
+                self.driver.find_element_by_link_text("Mis Fichajes").click()
+                break
+            except NoSuchElementException:
+                time.sleep(1)
+                t += 1
+
         last_action = self.driver.find_element_by_xpath(
             "//table[@class='table-striped  table-hover col-lg-12 col-md-12 col-sm-12 col-xs-12']"
             "/tbody[2]/tr/td[2]"
